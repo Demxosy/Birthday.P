@@ -1,0 +1,66 @@
+/* Friendship page for Pratiksha - styles */
+:root{
+  --night:#1c1640; --deep:#251d52; --sky:#6ec1ff; --sun:#ffd166; --mint:#7be0b5; --rose:#ff8fab; --ink:#f4f1ff; --soft:#b9b3e0;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --body:'Nunito',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--ink);font-family:var(--body);font-size:1.05rem;line-height:1.65;min-height:100vh;overflow-x:hidden}
+a,button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 1.25rem 4rem}
+section{padding:4.5rem 0 1rem}
+h1,h2{font-family:var(--display);line-height:1.1}
+h2{font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.6rem;color:var(--sun)}
+.lead{color:var(--soft);max-width:60ch;margin-bottom:1.6rem}
+
+/* hero */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:3rem}
+.hero small{color:var(--mint);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;font-size:1.05rem}
+.hero h1{font-size:clamp(3.2rem,15vw,9rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 span{display:inline-block;animation:bob 3.2s ease-in-out infinite}
+.hero h1 span:nth-child(2n){animation-delay:.25s}
+.hero h1 span:nth-child(3n){animation-delay:.5s}
+@keyframes bob{50%{transform:translateY(-.08em)}}
+.hero p{font-size:1.25rem;color:var(--soft);max-width:34ch;margin:1.2rem 0 2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{border:0;cursor:pointer;background:var(--sun);color:#2a2100;font-weight:700;padding:.85rem 1.5rem;border-radius:999px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--soft)}
+
+/* constellation */
+.sky{position:relative;height:440px;background:linear-gradient(160deg,var(--deep),#171238);border-radius:28px;border:1px solid #3a3080;overflow:hidden}
+.sky svg{position:absolute;inset:0;width:100%;height:100%}
+.sky line{stroke:#5b50a8;stroke-width:1.5;stroke-dasharray:4 6}
+.star{position:absolute;transform:translate(-50%,-50%);background:none;border:0;cursor:pointer;display:grid;place-items:center;width:64px;height:64px;border-radius:50%}
+.star i{width:22px;height:22px;background:var(--c);border-radius:50%;box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 25%,transparent),0 0 24px var(--c);transition:transform .2s}
+.star:hover i,.star.on i{transform:scale(1.5)}
+.star b{position:absolute;top:100%;margin-top:-10px;font-size:.78rem;white-space:nowrap;color:var(--ink);font-weight:700}
+.panel{margin-top:1.2rem;min-height:5.5rem;background:var(--deep);border-left:6px solid var(--panelc,var(--sky));border-radius:14px;padding:1.1rem 1.4rem}
+.panel h3{font-family:var(--display);font-size:1.3rem;margin-bottom:.2rem}
+.hint{color:var(--soft);font-size:.92rem;margin-top:.6rem}
+
+/* promises */
+.promises{list-style:none;padding:0;display:grid;gap:.9rem}
+.promises li{background:var(--deep);border-radius:18px;padding:1.1rem 1.4rem;display:flex;gap:1rem;align-items:flex-start;border:1px solid #372e78}
+.promises li span{font-size:1.6rem;line-height:1.3}
+.promises strong{display:block;color:var(--mint)}
+
+/* countdown */
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;max-width:520px}
+.count div{background:var(--deep);border-radius:16px;padding:1rem .4rem;text-align:center;border:1px solid #372e78}
+.count b{display:block;font-family:var(--display);font-size:2rem;color:var(--sun)}
+.count small{color:var(--soft)}
+
+/* note */
+.card{background:linear-gradient(135deg,#2f2670,#231b57);border-radius:28px;padding:2rem 1.6rem;border:1px solid #453b95}
+.card p{max-width:60ch;margin-bottom:1rem}
+.card .sign{font-family:var(--display);font-size:1.4rem;color:var(--rose)}
+.wall{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}
+.wall span{padding:.4rem 1rem;border-radius:999px;background:var(--night);border:1px solid #453b95;color:var(--ink);font-weight:600}
+footer{text-align:center;color:var(--soft);padding:3rem 0 1rem}
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+@media (max-width:560px){.sky{height:520px}.count b{font-size:1.5rem}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

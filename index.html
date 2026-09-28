@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Pratiksha, the best friend anyone could ask for</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#1c1640; --deep:#251d52; --sky:#6ec1ff; --sun:#ffd166; --mint:#7be0b5; --rose:#ff8fab; --ink:#f4f1ff; --soft:#b9b3e0;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --body:'Nunito',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--night);color:var(--ink);font-family:var(--body);font-size:1.05rem;line-height:1.65;min-height:100vh;overflow-x:hidden}
+a,button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 1.25rem 4rem}
+section{padding:4.5rem 0 1rem}
+h1,h2{font-family:var(--display);line-height:1.1}
+h2{font-size:clamp(1.7rem,4.5vw,2.4rem);margin-bottom:.6rem;color:var(--sun)}
+.lead{color:var(--soft);max-width:60ch;margin-bottom:1.6rem}
+
+/* hero */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:3rem}
+.hero small{color:var(--mint);font-weight:700;letter-spacing:.02em;margin-bottom:1rem;font-size:1.05rem}
+.hero h1{font-size:clamp(3.2rem,15vw,9rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 span{display:inline-block;animation:bob 3.2s ease-in-out infinite}
+.hero h1 span:nth-child(2n){animation-delay:.25s}
+.hero h1 span:nth-child(3n){animation-delay:.5s}
+@keyframes bob{50%{transform:translateY(-.08em)}}
+.hero p{font-size:1.25rem;color:var(--soft);max-width:34ch;margin:1.2rem 0 2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{border:0;cursor:pointer;background:var(--sun);color:#2a2100;font-weight:700;padding:.85rem 1.5rem;border-radius:999px;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--soft)}
+
+/* constellation */
+.sky{position:relative;height:440px;background:linear-gradient(160deg,var(--deep),#171238);border-radius:28px;border:1px solid #3a3080;overflow:hidden}
+.sky svg{position:absolute;inset:0;width:100%;height:100%}
+.sky line{stroke:#5b50a8;stroke-width:1.5;stroke-dasharray:4 6}
+.star{position:absolute;transform:translate(-50%,-50%);background:none;border:0;cursor:pointer;display:grid;place-items:center;width:64px;height:64px;border-radius:50%}
+.star i{width:22px;height:22px;background:var(--c);border-radius:50%;box-shadow:0 0 0 6px color-mix(in srgb,var(--c) 25%,transparent),0 0 24px var(--c);transition:transform .2s}
+.star:hover i,.star.on i{transform:scale(1.5)}
+.star b{position:absolute;top:100%;margin-top:-10px;font-size:.78rem;white-space:nowrap;color:var(--ink);font-weight:700}
+.panel{margin-top:1.2rem;min-height:5.5rem;background:var(--deep);border-left:6px solid var(--panelc,var(--sky));border-radius:14px;padding:1.1rem 1.4rem}
+.panel h3{font-family:var(--display);font-size:1.3rem;margin-bottom:.2rem}
+.hint{color:var(--soft);font-size:.92rem;margin-top:.6rem}
+
+/* promises */
+.promises{list-style:none;padding:0;display:grid;gap:.9rem}
+.promises li{background:var(--deep);border-radius:18px;padding:1.1rem 1.4rem;display:flex;gap:1rem;align-items:flex-start;border:1px solid #372e78}
+.promises li span{font-size:1.6rem;line-height:1.3}
+.promises strong{display:block;color:var(--mint)}
+
+/* countdown */
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;max-width:520px}
+.count div{background:var(--deep);border-radius:16px;padding:1rem .4rem;text-align:center;border:1px solid #372e78}
+.count b{display:block;font-family:var(--display);font-size:2rem;color:var(--sun)}
+.count small{color:var(--soft)}
+
+/* note */
+.card{background:linear-gradient(135deg,#2f2670,#231b57);border-radius:28px;padding:2rem 1.6rem;border:1px solid #453b95}
+.card p{max-width:60ch;margin-bottom:1rem}
+.card .sign{font-family:var(--display);font-size:1.4rem;color:var(--rose)}
+.wall{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0}
+.wall span{padding:.4rem 1rem;border-radius:999px;background:var(--night);border:1px solid #453b95;color:var(--ink);font-weight:600}
+footer{text-align:center;color:var(--soft);padding:3rem 0 1rem}
+canvas#fx{position:fixed;inset:0;width:100%;height:100%;z-index:5;pointer-events:none}
+@media (max-width:560px){.sky{height:520px}.count b{font-size:1.5rem}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<main>
+  <header class="hero">
+    <small id="greet">A little page, made just for you</small>
+    <h1 id="name" aria-label="Pratiksha"></h1>
+    <p>Thank you for being the kind of friend people are lucky to find.</p>
+    <div class="btns">
+      <button class="btn" id="party">Celebrate you</button>
+      <a class="btn alt" href="#stars-section" style="text-decoration:none">See what makes you special</a>
+    </div>
+  </header>
+
+  <section id="stars-section">
+    <h2>Your constellation</h2>
+    <p class="lead">Every star is something real about you. Tap each one to open it.</p>
+    <div class="sky" id="sky">
+      <svg id="lines" aria-hidden="true"></svg>
+    </div>
+    <div class="panel" id="panel" aria-live="polite">
+      <h3>Pick a star</h3>
+      <p>Each one holds a reason you matter so much.</p>
+    </div>
+    <p class="hint" id="found">0 of 8 stars found</p>
+  </section>
+
+  <section>
+    <h2>Promises from your bestie</h2>
+    <p class="lead">Big words for a big friendship. These are the ones I mean.</p>
+    <ul class="promises">
+      <li><span>🎧</span><div><strong>I'll always listen</strong>Good days, bad days, and the random 2 a.m. thoughts.</div></li>
+      <li><span>🤝</span><div><strong>I've got your back</strong>When things get hard, you won't face them alone.</div></li>
+      <li><span>😂</span><div><strong>We'll keep laughing</strong>Inside jokes never expire. Ours only get better.</div></li>
+      <li><span>🌱</span><div><strong>I'll cheer for your dreams</strong>Whatever you want to become, I'm in your corner.</div></li>
+      <li><span>💬</span><div><strong>I'll be honest, kindly</strong>Real friends tell the truth and stay afterward.</div></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Words that fit you</h2>
+    <p class="lead">Tap a word to add a little sparkle.</p>
+    <div class="wall" id="wall"></div>
+  </section>
+
+  <section>
+    <h2>Your next birthday</h2>
+    <p class="lead" id="ageLine">Counting down to your special day, 1 January.</p>
+    <div class="count" id="count" role="timer">
+      <div><b id="d">0</b><small>days</small></div>
+      <div><b id="h">0</b><small>hours</small></div>
+      <div><b id="m">0</b><small>minutes</small></div>
+      <div><b id="s">0</b><small>seconds</small></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <h2>A note for you</h2>
+      <p>Some people walk into your life and quietly make everything better. You did that for me. Your kindness, your laugh and the way you show up make every day brighter.</p>
+      <p>I hope this page reminds you that you're valued, appreciated and never alone. Thank you for being my best friend.</p>
+      <p class="sign" id="sign">Your bestie</p>
+    </div>
+  </section>
+
+  <footer>Made with friendship, for Pratiksha.</footer>
+</main>
+
+<script>
+/* ---------- EASY EDITS ---------- */
+const FROM = "Your bestie";           // put your name here, e.g. "Love, Aarav"
+const NAME = "Pratiksha";
+const BIRTH = {month:0, day:1, year:2011}; // 1 January 2011
+const STARS = [
+  {t:"Kindness",      c:"var(--mint)", x:14, y:26, m:"You notice when someone needs a hand, and you help without making a big deal of it."},
+  {t:"Your laugh",    c:"var(--sun)",  x:34, y:14, m:"It's contagious. One laugh from you fixes a bad day."},
+  {t:"Loyalty",       c:"var(--sky)",  x:56, y:30, m:"You stay. Through the easy times and the messy ones. That means everything."},
+  {t:"Support",       c:"var(--rose)", x:80, y:16, m:"When I doubt myself, you remind me what I can do."},
+  {t:"Fun",           c:"var(--sun)",  x:88, y:52, m:"Even ordinary plans turn into good memories with you."},
+  {t:"Honesty",       c:"var(--mint)", x:64, y:70, m:"You tell the truth with care. That's rare, and I trust it."},
+  {t:"Your heart",    c:"var(--rose)", x:36, y:62, m:"You care deeply about the people around you, and it shows."},
+  {t:"You, being you",c:"var(--sky)",  x:15, y:76, m:"No one else is like you. Never change that."}
+];
+const WORDS = ["Kind","Funny","Loyal","Brave","Creative","Caring","Real","Sunshine","Trustworthy","Awesome","Thoughtful","Unstoppable"];
+/* -------------------------------- */
+
+document.getElementById('sign').textContent = FROM;
+
+// hero name with animated letters
+const nameEl = document.getElementById('name');
+[...NAME].forEach((ch,i)=>{const s=document.createElement('span');s.textContent=ch;s.setAttribute('aria-hidden','true');nameEl.appendChild(s)});
+
+// constellation
+const sky = document.getElementById('sky'), lines = document.getElementById('lines');
+const panel = document.getElementById('panel'), found = document.getElementById('found');
+const opened = new Set();
+function drawLines(){
+  const w = sky.clientWidth, h = sky.clientHeight;
+  lines.setAttribute('viewBox',`0 0 ${w} ${h}`);
+  lines.innerHTML = '';
+  STARS.forEach((s,i)=>{
+    if(!i) return;
+    const p = STARS[i-1];
+    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',p.x/100*w);l.setAttribute('y1',p.y/100*h);
+    l.setAttribute('x2',s.x/100*w);l.setAttribute('y2',s.y/100*h);
+    lines.appendChild(l);
+  });
+}
+STARS.forEach((s,i)=>{
+  const b = document.createElement('button');
+  b.className='star';b.style.left=s.x+'%';b.style.top=s.y+'%';b.style.setProperty('--c',s.c);
+  b.setAttribute('aria-label',s.t);
+  b.innerHTML=`<i></i><b>${s.t}</b>`;
+  b.onclick=()=>{
+    document.querySelectorAll('.star.on').forEach(e=>e.classList.remove('on'));
+    b.classList.add('on');
+    panel.style.setProperty('--panelc',s.c);
+    panel.innerHTML=`<h3>${s.t}</h3><p>${s.m}</p>`;
+    opened.add(i);
+    found.textContent = opened.size===STARS.length
+      ? 'All 8 stars found. You shine like every one of them.'
+      : `${opened.size} of ${STARS.length} stars found`;
+    if(opened.size===STARS.length) burst();
+  };
+  sky.appendChild(b);
+});
+drawLines();addEventListener('resize',drawLines);
+
+// words
+const wall = document.getElementById('wall');
+WORDS.forEach(w=>{
+  const s=document.createElement('span');s.textContent=w;s.tabIndex=0;s.style.cursor='pointer';
+  const go=()=>burst(s.getBoundingClientRect().left+s.offsetWidth/2,s.getBoundingClientRect().top+s.offsetHeight/2,18);
+  s.onclick=go;s.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go()}};
+  wall.appendChild(s);
+});
+
+// countdown to next 1 January
+const pad=n=>String(n).padStart(2,'0');
+function tick(){
+  const now=new Date();
+  let y=now.getFullYear();
+  let next=new Date(y,BIRTH.month,BIRTH.day);
+  if(next<=now) next=new Date(y+1,BIRTH.month,BIRTH.day);
+  const turning=next.getFullYear()-BIRTH.year;
+  document.getElementById('ageLine').textContent=`Counting down to your ${turning}th birthday on 1 January ${next.getFullYear()}.`;
+  const diff=next-now;
+  document.getElementById('d').textContent=Math.floor(diff/864e5);
+  document.getElementById('h').textContent=pad(Math.floor(diff/36e5)%24);
+  document.getElementById('m').textContent=pad(Math.floor(diff/6e4)%60);
+  document.getElementById('s').textContent=pad(Math.floor(diff/1e3)%60);
+}
+tick();setInterval(tick,1000);
+
+// twinkling background stars
+const bg=document.getElementById('stars'),bx=bg.getContext('2d');
+let pts=[];
+function sizeBg(){bg.width=innerWidth;bg.height=innerHeight;pts=Array.from({length:Math.min(120,Math.floor(innerWidth/9))},()=>({x:Math.random()*bg.width,y:Math.random()*bg.height,r:Math.random()*1.6+.3,p:Math.random()*6}))}
+sizeBg();addEventListener('resize',sizeBg);
+const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function drawBg(t){
+  bx.clearRect(0,0,bg.width,bg.height);
+  pts.forEach(p=>{bx.globalAlpha=.35+.65*Math.abs(Math.sin(p.p+t/1400));bx.fillStyle='#fff';bx.beginPath();bx.arc(p.x,p.y,p.r,0,7);bx.fill()});
+  if(!still) requestAnimationFrame(drawBg);
+}
+requestAnimationFrame(drawBg);
+
+// confetti
+const fx=document.getElementById('fx'),fc=fx.getContext('2d');
+let bits=[],run=false;
+function sizeFx(){fx.width=innerWidth;fx.height=innerHeight}sizeFx();addEventListener('resize',sizeFx);
+const cols=['#ffd166','#7be0b5','#6ec1ff','#ff8fab','#ffffff'];
+function burst(x=innerWidth/2,y=innerHeight/3,n=140){
+  if(still) return;
+  for(let i=0;i<n;i++){const a=Math.random()*6.283,v=Math.random()*9+3;
+    bits.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-5,s:Math.random()*7+4,c:cols[i%cols.length],r:Math.random()*6,l:100+Math.random()*60})}
+  if(!run){run=true;requestAnimationFrame(loop)}
+}
+function loop(){
+  fc.clearRect(0,0,fx.width,fx.height);
+  bits=bits.filter(b=>b.l>0);
+  bits.forEach(b=>{b.x+=b.vx;b.y+=b.vy;b.vy+=.28;b.vx*=.99;b.r+=.2;b.l--;
+    fc.save();fc.translate(b.x,b.y);fc.rotate(b.r);fc.fillStyle=b.c;fc.globalAlpha=Math.min(1,b.l/40);fc.fillRect(-b.s/2,-b.s/4,b.s,b.s/2);fc.restore()});
+  if(bits.length) requestAnimationFrame(loop); else run=false;
+}
+document.getElementById('party').onclick=()=>{burst(innerWidth*.3,innerHeight*.4);burst(innerWidth*.7,innerHeight*.4)};
+setTimeout(()=>burst(),600);
+</script>
+</body>
+</html>
